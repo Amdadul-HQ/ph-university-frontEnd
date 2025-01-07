@@ -3,7 +3,13 @@ import MainLayout from "../components/layout/MainLayout";
 
 const mainRoutes = createBrowserRouter([{
     path:'/',
-    element:<MainLayout/>
+    element:<MainLayout/>,
+    children:[
+        {
+            path:'/',
+            // element:
+        }
+    ]
 }]);
 
 export default mainRoutes;
