@@ -1,19 +1,30 @@
-import { Layout, Menu } from "antd";
+import { Layout, Menu, MenuProps } from "antd";
+import { Outlet } from "react-router-dom";
 
 const MainLayout = () => {
   const { Header, Content, Footer, Sider } = Layout;
-  const items = [
+  const items :MenuProps['items'] = [
     {
-      key: "asfasf",
+      key: "1",
       label: "Dashboard",
     },
     {
-      key: "asfasfasdf",
+      key: "2",
       label: "Profile",
     },
     {
-      key: "asfasfewgr",
+      key: "3",
       label: "User Management",
+      children:[
+        {
+            key:'3.1',
+            label:"Create Admin"
+        },
+        {
+            key:'3.2',
+            label:"Create Student"
+        }
+      ]
     },
   ];
 
@@ -29,7 +40,9 @@ const MainLayout = () => {
           console.log(collapsed, type);
         }}
       >
-        <div className="demo-logo-vertical" />
+        <div style={{color:'white',height:"4rem",display:"flex",justifyContent:"center",alignItems:"center"}}>
+        <h1 >PH University</h1>
+        </div>
         <Menu
           theme="dark"
           mode="inline"
@@ -40,14 +53,7 @@ const MainLayout = () => {
       <Layout>
         <Header style={{ padding: 0}} />
         <Content style={{ margin: "24px 16px 0" }}>
-          <div
-            style={{
-              padding: 24,
-              minHeight: 360,
-            }}
-          >
-            content
-          </div>
+        <Outlet/>
         </Content>
         <Footer style={{ textAlign: "center" }}>
           Ant Design ©{new Date().getFullYear()} Created by Ant UED
