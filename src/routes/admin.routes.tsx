@@ -1,8 +1,14 @@
+import { ReactNode } from "react";
 import AdminDashboard from "../pages/admin/AdminDashboard";
 import CreateAdmin from "../pages/admin/CreateAdmin";
 import CreateFaculty from "../pages/admin/CreateFaculty";
 import CreateStudent from "../pages/admin/CreateStudent";
 
+
+type TRoute = {
+  path: string,
+  element:ReactNode
+}
 
 const adminRoutes2 = [
   {
@@ -32,8 +38,7 @@ const adminRoutes2 = [
   },
 ];
 
-export const adminRoutes = adminRoutes2.reduce((acc,item)=>{
-    acc.push(item);
+export const adminRoutes = adminRoutes2.reduce((acc:TRoute[],item)=>{
     if(item.path && item.element){
       acc.push({
         path:item.path,
