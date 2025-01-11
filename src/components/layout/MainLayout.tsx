@@ -33,7 +33,7 @@ const MainLayout = () => {
           theme="dark"
           mode="inline"
           defaultSelectedKeys={["4"]}
-          items={sidebarItemsGenerator(adminPaths)}
+          items={sidebarItemsGenerator(adminPaths,"admin")}
         />
       </Sider>
       <Layout>

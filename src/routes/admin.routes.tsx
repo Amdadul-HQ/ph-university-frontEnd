@@ -4,13 +4,6 @@ import CreateFaculty from "../pages/admin/CreateFaculty";
 import CreateStudent from "../pages/admin/CreateStudent";
 
 
-// type TRoute = {
-//   path: string;
-//   element: ReactNode;
-// };
-
-
-
 export const adminPaths = [
   {
     name: "Dashboard",
