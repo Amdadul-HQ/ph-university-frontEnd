@@ -1,17 +1,4 @@
-import { ReactNode } from "react";
-
-type TRoute = {
-  path: string;
-  element: ReactNode;
-};
-
-type TUserPath = {
-    name:string,
-    path?:string,
-    element?:ReactNode,
-    children?:TUserPath[]
-}
-
+import { TRoute, TUserPath } from "../type/CommonType";
 
 const routesGenerator = (items:TUserPath[]) => {
     const routes = items.reduce((acc:TRoute[],item)=>{
