@@ -16,7 +16,7 @@ const baseQuery = fetchBaseQuery(
 })
 
 const baseQueryWithRefreshToken = async (args,api, extraOption) =>{
-    const result = await baseQuery(args,api,extraOption);
+    let result = await baseQuery(args,api,extraOption);
     if(result?.error?.status === 401){
         // * send Refresh token
         const res = await fetch(
@@ -31,6 +31,8 @@ const baseQueryWithRefreshToken = async (args,api, extraOption) =>{
         const user = (api.getState() as RootState).auth.user;
 
         api.dispatch(setUser({user,token:data?.data?.accessToken}))
+
+        result = await baseQuery(args,api,extraOption)
 
     }
     return result;
