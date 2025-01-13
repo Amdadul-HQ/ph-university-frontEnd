@@ -10,10 +10,14 @@ import ProtectedRoute from "./Protected/ProtectedRoute";
 const mainRoutes = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
+    element: (
+      <ProtectedRoute>
+        <MainLayout />
+      </ProtectedRoute>
+    ),
   },
   {
-    path: "/admin",
+    path: "/superAdmin",
     element: (
       <ProtectedRoute>
         <MainLayout />

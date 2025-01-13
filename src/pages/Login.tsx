@@ -4,9 +4,11 @@ import { useLogingMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/function/verifyToken";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     const { register, handleSubmit } = useForm({
@@ -26,8 +28,9 @@ const Login = () => {
             password:data.password
         }
         const res = await login(userInfo).unwrap();
-        const user = verifyToken(res.data.accessToken);
+        const user  = verifyToken(res.data.accessToken);
         dispatch(setUser({user,token:res.data.accessToken}));
+        navigate(`/${user?.role}/dashboard`);
     }
     return (
         <form 
