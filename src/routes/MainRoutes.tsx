@@ -27,12 +27,20 @@ const mainRoutes = createBrowserRouter([
   },
   {
     path: "/faculty",
-    element: <MainLayout />,
+    element: (
+      <ProtectedRoute>
+        <MainLayout />
+      </ProtectedRoute>
+    ),
     children: routesGenerator(facultyPaths),
   },
   {
     path: "/student",
-    element: <MainLayout />,
+    element: (
+      <ProtectedRoute>
+        <MainLayout />
+      </ProtectedRoute>
+    ),
     children: routesGenerator(adminPaths),
   },
   {
