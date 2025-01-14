@@ -13,9 +13,6 @@ const Login = () => {
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-
-
-
     const [login] = useLogingMutation();
 
     const defaultValues = {
