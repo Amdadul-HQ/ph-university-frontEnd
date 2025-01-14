@@ -1,23 +1,20 @@
 import { Button } from "antd";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 import { useLogingMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
 import { setUser, TUser } from "../redux/features/auth/authSlice";
 import { verifyToken } from "../utils/function/verifyToken";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import PhForm from "../components/form/PhForm";
+import PhInput from "../components/form/PhInput";
 
 const Login = () => {
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
-    const { register, handleSubmit } = useForm({
-      defaultValues: {
-        id: "0001",
-        password: "admin12345",
-      },
-    });
+
 
     const [login] = useLogingMutation();
 
@@ -41,19 +38,17 @@ const Login = () => {
         }
     }
     return (
-        <form 
-        onSubmit={handleSubmit(onSubmit)}
+        <PhForm 
+        onSubmit={onSubmit}
         >
             <div>
-                <label htmlFor="id">ID:</label>
-                <input type="text" id="id" {...register('id')}></input>
+                <PhInput type="text" name="id" label="ID"/>
             </div>
             <div>
-                <label htmlFor="password">Password:</label>
-                <input type="text" id="password" {...register('password')}></input>
+                <PhInput type="text" name="password" label="Password"/>
             </div>
             <Button htmlType="submit">Login</Button>
-        </form>
+        </PhForm>
     );
 };
 
