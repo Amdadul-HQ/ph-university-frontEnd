@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Row } from "antd";
 import { FieldValues } from "react-hook-form";
 import { useLogingMutation } from "../redux/features/auth/authApi";
 import { useAppDispatch } from "../redux/hooks";
@@ -20,6 +20,7 @@ const Login = () => {
 
 
     const onSubmit =async (data:FieldValues) =>{
+        console.log(data);
         const toastId = toast.loading("Logging in")
         try{
             const userInfo = {
@@ -38,17 +39,13 @@ const Login = () => {
         }
     }
     return (
-        <PhForm 
-        onSubmit={onSubmit}
-        >
-            <div>
+        <Row justify="center" align="middle" style={{height:'100vh'}}>
+            <PhForm onSubmit={onSubmit}>
                 <PhInput type="text" name="id" label="ID"/>
-            </div>
-            <div>
                 <PhInput type="text" name="password" label="Password"/>
-            </div>
-            <Button htmlType="submit">Login</Button>
-        </PhForm>
+                <Button htmlType="submit">Login</Button>
+            </PhForm>
+        </Row>
     );
 };
 
