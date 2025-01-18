@@ -16,7 +16,7 @@ const PhSelect = ({label,name,options}:TPhSelectProps) => {
         <Controller
         name={name}
         render={({field})=>(
-            <Form.Item label={label}>
+            <Form.Item layout="vertical" label={label}>
               <Select
                 {...field}
                 style={{ width: '100%' }}
