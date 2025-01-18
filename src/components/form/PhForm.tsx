@@ -7,27 +7,32 @@ type TFormProps = {
     children:ReactNode
 } & TFormConfig
 
-type TFormConfig= {
-    defaultValues?:Record<string,any>
-}
+type TFormConfig = {
+  defaultValues?: Record<string, any>;
+  resolver?:any;
+};
 
-const PhForm = ({onSubmit,children,defaultValues} :TFormProps) => {
-    
-    const formConfig : TFormConfig =  {}
-    if(defaultValues){
-        formConfig['defaultValues'] = defaultValues
-    }
+const PhForm = ({
+  onSubmit,
+  children,
+  defaultValues,
+  resolver,
+}: TFormProps) => {
+  const formConfig: TFormConfig = {};
+  if (defaultValues) {
+    formConfig["defaultValues"] = defaultValues;
+  }
+  if(resolver){
+    formConfig['resolver'] = resolver
+  }
 
-    const methods = useForm(formConfig);
- 
+  const methods = useForm(formConfig);
 
-    return (
-        <FormProvider {...methods}>
-            <Form onFinish={methods.handleSubmit(onSubmit)}>
-               {children} 
-            </Form>
-        </FormProvider>
-    );
+  return (
+    <FormProvider {...methods}>
+      <Form onFinish={methods.handleSubmit(onSubmit)}>{children}</Form>
+    </FormProvider>
+  );
 };
 
 export default PhForm;

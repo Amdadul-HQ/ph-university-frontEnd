@@ -8,10 +8,10 @@ import { TPhSelectProps } from "../../constants/global";
 const PhSelect = ({label,name,options}:TPhSelectProps) => {
 
     return (
-      <div style={{marginTop:"50px"}}>
+      <div style={{marginTop:"50px",marginBottom:"60px"}}>
         <Controller
           name={name}
-          render={({ field }) => (
+          render={({ field,fieldState:{error} }) => (
             <Form.Item layout="vertical" label={label}>
               <Select
                 {...field}
@@ -19,6 +19,7 @@ const PhSelect = ({label,name,options}:TPhSelectProps) => {
                 options={options}
                 size="large"
               />
+              {error && <span style={{color:'red'}}>{error.message}</span>}
             </Form.Item>
           )}
         />

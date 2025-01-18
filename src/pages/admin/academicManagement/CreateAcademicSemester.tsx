@@ -3,7 +3,8 @@ import PhForm from "../../../components/form/PhForm";
 import { Button, Col, Flex } from "antd";
 import PhSelect from "../../../components/form/PhSelect";
 import { monthOptions, semesterOptions, yearOptions } from "../../../constants/semester";
-
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod";
 
 const CreateAcademicSemester = () => {
 
@@ -18,10 +19,18 @@ const CreateAcademicSemester = () => {
         }
         console.log(semesterData);
     }
+    
+    const academicSemesterSchema = z.object({
+      name: z.string({ required_error: "Please select a Name" }),
+      year: z.string({ required_error: "Please select a Year" }),
+      startMonth: z.string({ required_error: "Please select a Start Month" }),
+      endMonth: z.string({ required_error: "Please select a End Month" }),
+    });
+
     return (
       <Flex justify="center" align="center">
         <Col span={6}>
-          <PhForm onSubmit={onSubmit}>
+          <PhForm resolver={zodResolver(academicSemesterSchema)} onSubmit={onSubmit}>
             <PhSelect options={semesterOptions} name="name" label="Name" />
             <PhSelect options={yearOptions} name="year" label="Year" />
             <PhSelect
@@ -34,7 +43,7 @@ const CreateAcademicSemester = () => {
               label="End Month"
               name="endMonth"
             />
-            <Button style={{ marginTop: "30px" }} htmlType="submit">
+            <Button htmlType="submit">
               Submit
             </Button>
           </PhForm>
