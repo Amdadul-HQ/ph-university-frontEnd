@@ -23,6 +23,9 @@ const CreateAcademicSemester = () => {
         }
         try{
           const res = await addAcademicSemester(semesterData);
+          if(res?.error){
+            return toast.error(res.error.data.message)
+          }
           toast.success("semester added successfully!!")
         }
         catch(error){
@@ -30,7 +33,6 @@ const CreateAcademicSemester = () => {
             toast.error('something went worng')
           }
         }
-        console.log(semesterData);
     }
     
     return (
