@@ -5,10 +5,14 @@ import PhSelect from "../../../components/form/PhSelect";
 import { monthOptions, semesterOptions, yearOptions } from "../../../constants/semester";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { academicSemesterSchema } from "../../../schema/academicManagement.schema";
+import { useAddAcademicSemesterMutation } from "../../../redux/features/admin/academicManagement.api";
+import { toast } from "sonner";
 
 const CreateAcademicSemester = () => {
 
-    const onSubmit: SubmitHandler<FieldValues> = (data) =>{
+    const [addAcademicSemester] = useAddAcademicSemesterMutation();
+
+    const onSubmit: SubmitHandler<FieldValues> = async (data) =>{
         const name = semesterOptions[Number(data?.name) - 1].label;
         const semesterData = {
             name:name,
@@ -16,6 +20,16 @@ const CreateAcademicSemester = () => {
             year:data?.year,
             startMonth:data?.startMonth,
             endMonth:data?.endMonth
+        }
+        try{
+          const res = await addAcademicSemester(semesterData);
+          toast.success("semester added successfully!!")
+          console.log(res);
+        }
+        catch(error){
+          if(error){
+            toast.error('something went worng')
+          }
         }
         console.log(semesterData);
     }
