@@ -2,6 +2,7 @@ import { BaseQueryApi, BaseQueryFn, createApi, DefinitionType, FetchArgs, fetchB
 import { RootState } from "../store";
 import { logOut, setUser } from "../features/auth/authSlice";
 import { toast } from "sonner";
+import { TResponse } from "../../utils/type/CommonType";
 
 const baseQuery = fetchBaseQuery(
     {
@@ -17,7 +18,7 @@ const baseQuery = fetchBaseQuery(
 })
 
 const baseQueryWithRefreshToken : BaseQueryFn<FetchArgs,BaseQueryApi,DefinitionType> = async (args,api, extraOption) :Promise<any> =>{
-    let result = await baseQuery(args,api,extraOption);
+    let result = await baseQuery(args,api,extraOption) as TResponse;
 
     if(result?.error?.status === 404){
         toast.error(result?.error?.data?.message)
@@ -40,7 +41,7 @@ const baseQueryWithRefreshToken : BaseQueryFn<FetchArgs,BaseQueryApi,DefinitionT
 
         api.dispatch(setUser({user,token:data?.data?.accessToken}));
 
-        result = await baseQuery(args,api,extraOption)
+        result = await baseQuery(args,api,extraOption) as TResponse
         
         }
         else{
