@@ -1,49 +1,42 @@
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import PhForm from "../../../components/form/PhForm";
 import { Button, Col, Flex } from "antd";
-import PhSelect, { TOptions } from "../../../components/form/PhSelect";
-
-const nameOptions:TOptions[] = [
-    {
-        value:"01",
-        label:"Autumn"
-    },
-    {
-        value:"02",
-        label:"Summer"
-    },
-    {
-        value:"03",
-        label:"Fall"
-    }
-]
-
-const currentYear = new Date().getFullYear();
-const yearOptions : TOptions[] = [0, 1, 2, 3, 4].map((number) => ({
-  value: String(currentYear + number),
-  label: String(currentYear + number),
-}));
+import PhSelect from "../../../components/form/PhSelect";
+import { monthOptions, semesterOptions, yearOptions } from "../../../constants/semester";
 
 
 const CreateAcademicSemester = () => {
 
     const onSubmit: SubmitHandler<FieldValues> = (data) =>{
-        const name = nameOptions[Number(data?.name) - 1].label
+        const name = semesterOptions[Number(data?.name) - 1].label;
         const semesterData = {
             name:name,
-            code:data?.name
+            code:data?.name,
+            year:data?.year,
+            startMonth:data?.startMonth,
+            endMonth:data?.endMonth
         }
         console.log(semesterData);
     }
     return (
-      <Flex justify="center" align="center" >
+      <Flex justify="center" align="center">
         <Col span={6}>
           <PhForm onSubmit={onSubmit}>
-            <PhSelect options={nameOptions} name="Name" label="name" />
-            <PhSelect options={yearOptions} name="Year" label="year" />
-            <PhSelect options={nameOptions} name="Start Month" label="startMonth" />
-            <PhSelect options={nameOptions} name="End Month" label="endMonth" />
-            <Button htmlType="submit">Submit</Button>
+            <PhSelect options={semesterOptions} name="name" label="Name" />
+            <PhSelect options={yearOptions} name="year" label="Year" />
+            <PhSelect
+              options={monthOptions}
+              label="Start Month"
+              name="startMonth"
+            />
+            <PhSelect
+              options={monthOptions}
+              label="End Month"
+              name="endMonth"
+            />
+            <Button style={{ marginTop: "30px" }} htmlType="submit">
+              Submit
+            </Button>
           </PhForm>
         </Col>
       </Flex>
