@@ -32,7 +32,10 @@ const CreateAcademicSemester = () => {
       <Flex justify="center" align="center">
         <Col span={6}>
           <PhForm onSubmit={onSubmit}>
-            <PhSelect options={nameOptions} name="name" label="name"/>
+            <PhSelect options={nameOptions} name="Name" label="name" />
+            <PhSelect options={nameOptions} name="Year" label="year" />
+            <PhSelect options={nameOptions} name="Start Month" label="startMonth" />
+            <PhSelect options={nameOptions} name="End Month" label="endMonth" />
             <Button htmlType="submit">Submit</Button>
           </PhForm>
         </Col>

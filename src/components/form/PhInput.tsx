@@ -10,7 +10,7 @@ const PhInput = ({type,name,label} : TInputProps ) => {
         <Controller
         name={name}
         render={({field}) => (<Form.Item layout="vertical" label={label}>
-          <Input {...field} type={type} id={name}/>
+          <Input {...field} size="large" type={type} id={name}/>
         </Form.Item>
         )
         }
