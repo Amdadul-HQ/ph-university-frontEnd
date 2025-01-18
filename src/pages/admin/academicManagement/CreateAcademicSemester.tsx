@@ -4,7 +4,7 @@ import { Button, Col, Flex } from "antd";
 import PhSelect from "../../../components/form/PhSelect";
 import { monthOptions, semesterOptions, yearOptions } from "../../../constants/semester";
 import { zodResolver } from "@hookform/resolvers/zod"
-import { z } from "zod";
+import { academicSemesterSchema } from "../../../schema/academicManagement.schema";
 
 const CreateAcademicSemester = () => {
 
@@ -20,13 +20,6 @@ const CreateAcademicSemester = () => {
         console.log(semesterData);
     }
     
-    const academicSemesterSchema = z.object({
-      name: z.string({ required_error: "Please select a Name" }),
-      year: z.string({ required_error: "Please select a Year" }),
-      startMonth: z.string({ required_error: "Please select a Start Month" }),
-      endMonth: z.string({ required_error: "Please select a End Month" }),
-    });
-
     return (
       <Flex justify="center" align="center">
         <Col span={6}>
