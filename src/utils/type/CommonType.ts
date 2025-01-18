@@ -35,12 +35,12 @@ export type TMeta = {
   totalPage:number
 }
 
-export type TResponse = {
-  data?:any;
+export type TResponse<T> = {
+  data?:T;
   error?:TError;
   meta?:TMeta;
   success:boolean,
   message:string
 }
 
-export type TResponseRedux = TResponse & BaseQueryApi;
+export type TResponseRedux<T> = TResponse<T> & BaseQueryApi;

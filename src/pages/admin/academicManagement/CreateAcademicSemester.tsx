@@ -8,6 +8,7 @@ import { academicSemesterSchema } from "../../../schema/academicManagement.schem
 import { useAddAcademicSemesterMutation } from "../../../redux/features/admin/academicManagement.api";
 import { toast } from "sonner";
 import { TResponse } from "../../../utils/type/CommonType";
+import { TAcademicSemester } from "../../../utils/type/academicManagement.type";
 
 const CreateAcademicSemester = () => {
 
@@ -24,7 +25,7 @@ const CreateAcademicSemester = () => {
             endMonth:data?.endMonth
         }
         try{
-          const res = await addAcademicSemester(semesterData) as TResponse;
+          const res = await addAcademicSemester(semesterData) as TResponse<TAcademicSemester>;
           if(res?.error){
             return toast.error(res?.error?.data?.message,{id:toastId})
           }

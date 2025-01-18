@@ -18,7 +18,7 @@ const baseQuery = fetchBaseQuery(
 })
 
 const baseQueryWithRefreshToken : BaseQueryFn<FetchArgs,BaseQueryApi,DefinitionType> = async (args,api, extraOption) :Promise<any> =>{
-    let result = await baseQuery(args,api,extraOption) as TResponse;
+    let result = await baseQuery(args,api,extraOption) as TResponse<object>;
 
     if(result?.error?.status === 404){
         toast.error(result?.error?.data?.message)
@@ -41,7 +41,7 @@ const baseQueryWithRefreshToken : BaseQueryFn<FetchArgs,BaseQueryApi,DefinitionT
 
         api.dispatch(setUser({user,token:data?.data?.accessToken}));
 
-        result = await baseQuery(args,api,extraOption) as TResponse
+        result = await baseQuery(args,api,extraOption) as TResponse<object>
         
         }
         else{
