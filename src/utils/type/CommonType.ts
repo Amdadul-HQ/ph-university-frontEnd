@@ -1,3 +1,4 @@
+import { BaseQueryApi } from "@reduxjs/toolkit/query";
 import { ReactNode } from "react";
 
 export type TRoute = {
@@ -27,7 +28,19 @@ export type TError = {
   status:number
 }
 
+export type TMeta = {
+  limit:number,
+  page:number,
+  total:number,
+  totalPage:number
+}
+
 export type TResponse = {
   data?:any;
-  error?:TError
+  error?:TError;
+  meta?:TMeta;
+  success:boolean,
+  message:string
 }
+
+export type TResponseRedux = TResponse & BaseQueryApi;
