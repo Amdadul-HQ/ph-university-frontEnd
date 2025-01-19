@@ -10,7 +10,6 @@ const AcademicSemester = () => {
 
     const [params,setParams] = useState([]);
     const {data:semesterData} = useGetAllSemestersQuery(params);
-    console.log(semesterData);
     const tableData = semesterData?.data?.result?.map(({_id,name,startMonth,endMonth,year}) => ({
         key:_id,
         name,
@@ -35,6 +34,20 @@ const AcademicSemester = () => {
         title: "Year",
         dataIndex: "year",
         defaultSortOrder: "descend",
+        filters: [
+          {
+            text: "2024",
+            value: "2024",
+          },
+          {
+            text: "2025",
+            value: "2025",
+          },
+          {
+            text: "2026",
+            value: "2026",
+          },
+        ],
       },
       {
         title: "Start Month",
@@ -59,6 +72,9 @@ const AcademicSemester = () => {
         filters.name?.forEach(item => 
          queryParams.push({name:"name",value:item})
         )
+        filters.year?.forEach((item) =>
+          queryParams.push({ name: "year", value: item })
+        );
         setParams(queryParams)
       }
     };
