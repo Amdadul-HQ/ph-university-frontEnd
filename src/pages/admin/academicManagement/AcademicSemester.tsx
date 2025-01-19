@@ -3,13 +3,14 @@ import type { TableColumnsType, TableProps } from "antd";
 import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicManagement.api";
 import { TAcademicSemester } from "../../../utils/type/academicManagement.type";
 import { useState } from "react";
+import { TQueryParam } from "../../../utils/type/CommonType";
 
 export type TTableData = Pick<TAcademicSemester,'name' | '_id' | 'startMonth' | 'endMonth'>
 
 const AcademicSemester = () => {
 
-    const [params,setParams] = useState([]);
-    const {data:semesterData} = useGetAllSemestersQuery(params);
+    const [params,setParams] = useState<TQueryParam[] | undefined>(undefined);
+    const {data:semesterData,isLoading,isFetching} = useGetAllSemestersQuery(params);
     const tableData = semesterData?.data?.result?.map(({_id,name,startMonth,endMonth,year}) => ({
         key:_id,
         name,
@@ -68,8 +69,8 @@ const AcademicSemester = () => {
     ) => {
       if(extra.action === 'filter'){
         // console.log(filters);
-        const queryParams = [];
-        filters.name?.forEach(item => 
+        const queryParams : TQueryParam[] = [];
+        filters.name?.forEach(item  => 
          queryParams.push({name:"name",value:item})
         )
         filters.year?.forEach((item) =>
@@ -78,6 +79,9 @@ const AcademicSemester = () => {
         setParams(queryParams)
       }
     };
+    if(isFetching || isFetching){
+      return 
+    }
     return (
       <Table<TTableData>
         columns={columns}
