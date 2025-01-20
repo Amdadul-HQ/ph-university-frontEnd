@@ -46,24 +46,7 @@ const academicManagementApi = baseApi.injectEndpoints({
       query: () => ({
         url: "/academic-faculty",
         method: "GET",
-        // const params = new URLSearchParams();
-        // if (args) {
-        //   args.forEach((item: TQueryParam) => {
-        //     params.append(item.name, item.value as string);
-        //   });
-        // }
-        // return {
-        //   url: "/academic-semester",
-        //   method: "GET",
-        //   params: params,
-        // };
       }),
-      // transformResponse: (response: TResponseRedux<TAcademicSemester[]>) => {
-      //   return {
-      //     data: response.data,
-      //     meta: response.meta,
-      //   };
-      // },
     }),
   }),
 });

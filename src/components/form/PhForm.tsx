@@ -28,9 +28,14 @@ const PhForm = ({
 
   const methods = useForm(formConfig);
 
+  const submit = (data) => {
+    onSubmit(data)
+    methods.reset()
+  }
+
   return (
     <FormProvider {...methods}>
-      <Form onFinish={methods.handleSubmit(onSubmit)}>{children}</Form>
+      <Form onFinish={methods.handleSubmit(submit)}>{children}</Form>
     </FormProvider>
   );
 };
