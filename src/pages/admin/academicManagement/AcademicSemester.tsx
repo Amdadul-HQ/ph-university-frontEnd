@@ -4,6 +4,7 @@ import { useGetAllSemestersQuery } from "../../../redux/features/admin/academicM
 import { TAcademicSemester } from "../../../utils/type/academicManagement.type";
 import { useState } from "react";
 import { TQueryParam } from "../../../utils/type/CommonType";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export type TTableData = Pick<TAcademicSemester,'name' | '_id' | 'startMonth' | 'endMonth'>
 
@@ -88,7 +89,7 @@ const AcademicSemester = () => {
       }
     };
     if(isLoading || isFetching){
-      return 
+      return <LoadingOutlined/>
     }
     return (
       <Table<TTableData>
